@@ -19,6 +19,7 @@ package com.netflix.nicobar.core.archive;
 
 import static com.netflix.nicobar.core.testutil.CoreTestResourceUtil.TestResource.TEST_MODULE_SPEC_PATH;
 import static com.netflix.nicobar.core.testutil.CoreTestResourceUtil.TestResource.TEST_TEXT_PATH;
+import static com.netflix.nicobar.core.testutil.CoreTestResourceUtil.normalizeFilenames;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 
@@ -57,7 +58,7 @@ public class PathScriptArchiveTest {
             .build();
         assertEquals(scriptArchive.getModuleSpec().getModuleId(), moduleId);
         Set<String> archiveEntryNames = scriptArchive.getArchiveEntryNames();
-        assertEquals(archiveEntryNames, TEST_TEXT_PATH.getContentPaths());
+        assertEquals(archiveEntryNames, normalizeFilenames(TEST_TEXT_PATH.getContentPaths()));
         for (String entryName : archiveEntryNames) {
             URL entryUrl = scriptArchive.getEntry(entryName);
             assertNotNull(entryUrl);

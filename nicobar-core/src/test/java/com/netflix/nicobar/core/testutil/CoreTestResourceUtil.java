@@ -17,6 +17,7 @@
  */
 package com.netflix.nicobar.core.testutil;
 
+import static org.apache.commons.io.FilenameUtils.normalize;
 import static org.testng.Assert.fail;
 
 import java.net.URL;
@@ -95,5 +96,21 @@ public class CoreTestResourceUtil {
             fail("couldn't load resource " + script.getResourcePath());
         }
         return Paths.get(scriptUrl.toURI());
+    }
+
+
+    /**
+     * This method normalizes given paths to a standard format.
+     * The input may contain separators in either Unix or Windows format.
+     * The output will contain separators in the format of the system.
+     * @param contentPaths set of paths to normalize
+     * @return set of normalized paths
+     */
+    public static Set<String> normalizeFilenames(Set<String> contentPaths) {
+        Set<String> normalized = new LinkedHashSet<>();
+        for (String path : contentPaths) {
+            normalized.add(normalize(path));
+        }
+        return normalized;
     }
 }

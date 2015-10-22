@@ -78,7 +78,7 @@ public class ScriptModuleUtilsTest {
     public void testScriptModuleConversion() throws Exception {
         URL jarPath = getClass().getClassLoader().getResource("testmodules/hellohelper.jar");
 
-        JarScriptArchive jarArchive = new JarScriptArchive.Builder(Paths.get(jarPath.getFile()))
+        JarScriptArchive jarArchive = new JarScriptArchive.Builder(Paths.get(jarPath.toURI()))
             .build();
         ModuleId moduleId = ModuleId.create("hellohelper");
         moduleLoader.updateScriptArchives(Collections.singleton((ScriptArchive)jarArchive));

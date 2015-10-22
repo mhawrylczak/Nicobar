@@ -53,7 +53,7 @@ public class BytecodeLoaderTest {
     @Test
     public void testHelloworldArchive() throws Exception {
         URL jarPath = getClass().getClassLoader().getResource("testmodules/testmodule.jar");
-        JarScriptArchive scriptArchive = new JarScriptArchive.Builder(Paths.get(jarPath.getFile()))
+        JarScriptArchive scriptArchive = new JarScriptArchive.Builder(Paths.get(jarPath.toURI()))
             .build();
         JBossModuleClassLoader moduleClassLoader = mock(JBossModuleClassLoader.class);
         BytecodeLoader loader = new BytecodeLoader();

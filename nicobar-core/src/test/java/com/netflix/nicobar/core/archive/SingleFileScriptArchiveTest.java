@@ -18,6 +18,7 @@
 package com.netflix.nicobar.core.archive;
 
 import static com.netflix.nicobar.core.testutil.CoreTestResourceUtil.TestResource.TEST_SCRIPTS_PATH;
+import static java.lang.System.lineSeparator;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 
@@ -57,7 +58,7 @@ public class SingleFileScriptArchiveTest {
                 String content = IOUtils.toString(inputStream, Charsets.UTF_8);
 
                 // We have stored the file name as the content of the file
-                assertEquals(content, script + "\n");
+                assertEquals(content, script + lineSeparator());
             }
         }
     }

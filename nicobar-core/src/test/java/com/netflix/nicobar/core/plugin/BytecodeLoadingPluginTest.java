@@ -74,7 +74,7 @@ public class BytecodeLoadingPluginTest {
     public void testHelloHelperJar() throws Exception {
         URL jarPath = getClass().getClassLoader().getResource("testmodules/hellohelper.jar");
 
-        JarScriptArchive jarArchive = new JarScriptArchive.Builder(Paths.get(jarPath.getFile()))
+        JarScriptArchive jarArchive = new JarScriptArchive.Builder(Paths.get(jarPath.toURI()))
             .build();
         moduleLoader.updateScriptArchives(Collections.singleton((ScriptArchive)jarArchive));
         ScriptModule module = moduleLoader.getScriptModule(ModuleId.create("hellohelper"));
@@ -95,10 +95,10 @@ public class BytecodeLoadingPluginTest {
     @Test
     public void testHelloworldWithDeps() throws Exception {
         URL jarPath = getClass().getClassLoader().getResource("testmodules/helloworld.jar");
-        JarScriptArchive jarArchive = new JarScriptArchive.Builder(Paths.get(jarPath.getFile()))
+        JarScriptArchive jarArchive = new JarScriptArchive.Builder(Paths.get(jarPath.toURI()))
             .build();
         URL depJarPath = getClass().getClassLoader().getResource("testmodules/hellohelper.jar");
-        JarScriptArchive depArchive = new JarScriptArchive.Builder(Paths.get(depJarPath.getFile()))
+        JarScriptArchive depArchive = new JarScriptArchive.Builder(Paths.get(depJarPath.toURI()))
             .build();
         Set<ScriptArchive> archives = new HashSet<ScriptArchive>();
         Collections.<ScriptArchive>addAll(archives, depArchive, jarArchive);
