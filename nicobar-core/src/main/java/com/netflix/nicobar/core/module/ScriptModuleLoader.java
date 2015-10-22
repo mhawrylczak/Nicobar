@@ -17,6 +17,7 @@
  */
 package com.netflix.nicobar.core.module;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
@@ -270,7 +271,7 @@ public class ScriptModuleLoader {
                         public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
                             String relativePath = moduleCompilationRoot.relativize(file).toString();
                             if (relativePath.endsWith(".class")) {
-                                String className = relativePath.replaceAll(".class", "").replace("/", ".");
+                                String className = relativePath.replaceAll("\\.class$", "").replace(File.separator, ".");
                                 classesToLoad.add(className);
                             }
                             return FileVisitResult.CONTINUE;
