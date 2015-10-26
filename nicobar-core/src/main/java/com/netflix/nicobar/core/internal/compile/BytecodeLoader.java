@@ -15,6 +15,7 @@
  */
 package com.netflix.nicobar.core.internal.compile;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Collections;
@@ -59,7 +60,7 @@ public class BytecodeLoader implements ScriptArchiveCompiler {
                 continue;
             }
             // Load from the underlying archive class resource
-            String entryName = entry.replace(".class", "").replace("/", ".");
+            String entryName = entry.replaceAll("\\.class$", "").replace(File.separator, ".");
             try {
                 Class<?> addedClass = moduleClassLoader.loadClassLocal(entryName, true);
                 addedClasses.add(addedClass);
