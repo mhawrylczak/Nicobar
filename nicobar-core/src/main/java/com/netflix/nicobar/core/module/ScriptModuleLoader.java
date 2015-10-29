@@ -271,7 +271,7 @@ public class ScriptModuleLoader {
                         public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
                             String relativePath = moduleCompilationRoot.relativize(file).toString();
                             if (relativePath.endsWith(".class")) {
-                                String className = relativePath.replaceAll("\\.class$", "").replace(File.separator, ".");
+                                String className = relativePath.replaceAll("\\.class$", "").replace("\\", ".").replace("/", ".");
                                 classesToLoad.add(className);
                             }
                             return FileVisitResult.CONTINUE;

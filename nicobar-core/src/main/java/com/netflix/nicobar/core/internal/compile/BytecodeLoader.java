@@ -60,7 +60,7 @@ public class BytecodeLoader implements ScriptArchiveCompiler {
                 continue;
             }
             // Load from the underlying archive class resource
-            String entryName = entry.replaceAll("\\.class$", "").replace(File.separator, ".");
+            String entryName = entry.replaceAll("\\.class$", "").replace("\\", ".").replace("/", ".");
             try {
                 Class<?> addedClass = moduleClassLoader.loadClassLocal(entryName, true);
                 addedClasses.add(addedClass);
